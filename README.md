@@ -25,6 +25,3 @@ mvn clean spring-boot:run
 - `web.EmployeeMvcController` controlador MVC
 - Vistas Thymeleaf en `src/main/resources/templates`
 - SQL de esquema y datos en `src/main/resources`
-
-## Notas
-- Base de datos H2 en memoria; se crea con `schema.sql` y datos de ejemplo en `data.sql`.

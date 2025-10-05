@@ -3,6 +3,10 @@ package com.mvc.demo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+/**
+ * Entidad JPA que representa un empleado.
+ * Se mapea a la tabla TBL_EMPLOYEES.
+ */
 @Entity
 @Table(name = "TBL_EMPLOYEES")
 public class EmployeeEntity {

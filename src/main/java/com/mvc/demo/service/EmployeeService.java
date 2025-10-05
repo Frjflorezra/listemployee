@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Lógica de negocio para gestión de empleados.
+ */
 @Service
 public class EmployeeService {
   private final EmployeeRepository repository;
@@ -14,10 +17,17 @@ public class EmployeeService {
     this.repository = repository;
   }
 
+  /**
+   * Retorna todos los empleados.
+   */
   public List<EmployeeEntity> findAll() {
     return repository.findAll();
   }
 
+  /**
+   * Busca empleados por texto libre.
+   * @param query texto a buscar
+   */
   public List<EmployeeEntity> search(String query) {
     if (query == null || query.isBlank()) {
       return repository.findAll();
@@ -35,10 +45,16 @@ public class EmployeeService {
     return repository.save(employee);
   }
 
+  /**
+   * Elimina un empleado por id.
+   */
   public void delete(Long id) {
     repository.deleteById(id);
   }
 
+  /**
+   * Crea o actualiza un empleado según exista o no el id.
+   */
   public EmployeeEntity createOrUpdateEmployee(EmployeeEntity entity) {
     if (entity.getId() == null) {
       return repository.save(entity);
