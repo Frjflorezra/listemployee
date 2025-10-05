@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Empleados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h1>Empleados</h1>
+  <form th:action="@{/empleados}" method="get" style="margin-top:8px;margin-bottom:8px">
+    <input type="text" name="q" placeholder="Buscar por nombre o correo" th:value="${q}">
+    <button type="submit">Buscar</button>
+    <a th:href="@{/empleados}">Limpiar</a>
+    <a th:href="@{/empleados/nuevo}" style="float:right">Agregar empleado</a>
+  </form>
+  <table border="1" cellspacing="0" cellpadding="6">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="e : ${employees}">
+        <td th:text="${e.id}"></td>
+        <td th:text="${e.firstName + ' ' + e.lastName}"></td>
+        <td th:text="${e.email}"></td>
+        <td>
+          <a th:href="@{|/empleados/${e.id}/editar|}">Editar</a>
+          <form th:action="@{|/empleados/${e.id}/eliminar|}" method="post" style="display:inline" onsubmit="return confirm('¿Eliminar este empleado?');">
+            <button type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+<!-- minimal styles to avoid external files -->
+<style>
+  body{font-family:system-ui,Arial,sans-serif;margin:24px}
+  table{border-collapse:collapse;margin-top:12px;width:100%}
+  th,td{padding:8px 10px}
+  a,button{margin-right:6px}
+</style>
+</html>
+
+

@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Empleado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h1 th:text="${employee.id} != null ? 'Editar empleado' : 'Nuevo empleado'"></h1>
+  <form th:action="${employee.id} != null ? @{'/empleados/' + ${employee.id}} : @{/empleados}" th:object="${employee}" method="post">
+    <div>
+      <label>Nombre</label>
+      <input th:field="*{firstName}">
+      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <div>
+      <label>Apellido</label>
+      <input th:field="*{lastName}">
+      <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <div>
+      <label>Correo</label>
+      <input th:field="*{email}">
+      <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+    <button type="submit">Guardar</button>
+    <a th:href="@{/empleados}">Volver</a>
+  </form>
+</body>
+<style>
+  body{font-family:system-ui,Arial,sans-serif;margin:24px}
+  form>div{margin-bottom:10px}
+  input{padding:6px 8px}
+  span{color:#b00020;margin-left:8px}
+  button,a{margin-right:8px}
+  label{display:inline-block;width:110px}
+  input{width:240px}
+  @media (max-width:560px){label{width:auto;display:block;margin-bottom:4px} input{width:100%}}
+</style>
+</html>
+
+
